@@ -4,7 +4,9 @@
       <h1>Categories</h1>
       <div class="well">
         <ul>
-          <li></li>
+          <% @categories.each do |category| %>
+            <li><%= category.name %></li>
+          <% end %>
         </ul>
       </div>
 
