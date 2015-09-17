@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  def index 
+  def index
     @categories = Category.all.limit(50)
   end
 end
