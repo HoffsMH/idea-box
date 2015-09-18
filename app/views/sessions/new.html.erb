@@ -1,0 +1,14 @@
+<% content_for :content do %>
+<h1 class='col-centered'>Login</h1>
+  <div class='well'>
+    <span> <%= flash[:notice] %></span>
+      <%= form_for :user, url: {action: "create"}, html: {class: "login"} do |f| %>
+            <%= f.text_field :email, placeholder: 'Email' %><br>
+            <%= f.password_field :password, placeholder: 'Password' %><br>
+
+            <%= f.submit "Create" %>
+      <% end %>
+    </div>
+<% end %>
+
+<%= render 'layouts/simple_box' %>
