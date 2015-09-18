@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 
   let(:user) do
     User.new(email: "somedude@gmail.com", user_name: "somedude", password: "password", password_confirmation: "password")
@@ -31,7 +30,7 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
-  it "is invalid if the name is not unique" do
+  it "is invalid if the email is not unique" do
     User.create(valid_attributes)
     expect(user).not_to be_valid
   end
