@@ -34,4 +34,9 @@ RSpec.describe User, type: :model do
     User.create(valid_attributes)
     expect(user).not_to be_valid
   end
+
+  it "has a default role of 1" do
+    User.create(valid_attributes)
+    expect(user.role).to be(1)
+  end
 end
