@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe 'the sign up page', type: :feature do
+  let(:valid_attributes) do
+    {email: "somedude@gmail.com", user_name: "somedude", password: "password", password_confirmation: "password" }
+  end
   context 'when not currently signed in' do
     it 'displays a signup form' do
       visit '/users/new'
@@ -43,15 +46,17 @@ describe 'the sign up page', type: :feature do
   end
 
   context 'when currently signed in' do
+    before(:each) do
+      User.create(valid_attributes)
+    end
     it 'displays a message telling the user to sign out first' do
       visit '/login'
       fill_in("Email", :with => 'somedude@gmail.com')
       fill_in("Password", :with => 'password')
       click_button('Login')
-
       visit '/users/new'
-      save_and_open_page
-      expect(page).to have_content('Please sign out')
+
+      expect(page).to have_content('Please log out')
     end
   end
 end

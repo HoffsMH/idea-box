@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
   def new
-
+    if session[:user]
+      flash[:notice] = 'Please log out before creating a new user'
+      redirect_to controller: 'welcome', action: 'index'
+    end
   end
 
 
   def create
+    if session[:user]
+      flash[:notice] = 'Please log out before creating a new user'
+      redirect_to controller: 'welcome', action: 'index'
+    end
+
     @user = User.new(new_user_params)
     if @user.save
       flash[:notice] = 'user successfully created'

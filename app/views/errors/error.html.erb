@@ -1,0 +1,9 @@
+<% content_for :content do %>
+      <%= flash[:notice] %>
+      <h1>Error:</h1>
+      <div class="well">
+          <%= @error %>
+      </div>
+<%end %>
+
+<%= render 'layouts/simple_box' %>
