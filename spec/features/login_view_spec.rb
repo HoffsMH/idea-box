@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe 'the login page', type: :feature do
-  
+  before do
+    User.create({email: "somedude@gmail.com", user_name: "somedude", password: "password", password_confirmation: "password" })
+  end
   context 'when not currently signed in' do
     it 'displays a login form' do
       visit '/login'
@@ -10,11 +12,9 @@ describe 'the login page', type: :feature do
 
     it 'redirects to index if valid credentials' do
       visit '/login'
-      fill_in("email", :with => 'somedude@gmail.com')
-      fill_in("User Name", :with => 'somedude')
+      fill_in("Email", :with => 'somedude@gmail.com')
       fill_in("Password", :with => 'password')
-      fill_in("Confirm", :with => 'password')
-      click_button('Create')
+      click_button('Login')
 
       expect(current_path).to eq('/')
     end
